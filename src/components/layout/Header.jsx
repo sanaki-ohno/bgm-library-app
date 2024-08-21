@@ -42,9 +42,9 @@ const Header = ({ genres }) => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="text-2xl font-bold">
-            BGM Library
+            BGMart.online
           </Link>
-          <nav className="hidden md:flex items-center space-x-4">
+          <nav className="hidden lg:flex items-center space-x-4">
             <select
               value={
                 location.pathname === '/'
@@ -91,13 +91,13 @@ const Header = ({ genres }) => {
                 )
             )}
           </nav>
-          <button onClick={toggleMenu} className="md:hidden">
+          <button onClick={toggleMenu} className="lg:hidden text-2xl">
             {isMenuOpen ? '✕' : '☰'}
           </button>
         </div>
       </div>
       {isMenuOpen && (
-        <nav className="md:hidden">
+        <nav className="lg:hidden">
           <ul className="bg-primary-dark py-2">
             <li>
               <select

@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
@@ -29,42 +30,44 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen bg-secondary">
-        <Header genres={genres} />
-        <main className="flex-grow container mx-auto px-4 py-8 mt-16">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <>
-                  <h1 className="text-4xl font-bold mb-6 text-white">
-                    Welcome to BGM Library
-                  </h1>
-                  <GenreList genres={genres} />
-                  <Home musicData={musicData} genres={['All', ...genres]} />
-                </>
-              }
-            />
-            <Route
-              path="/genre/:genre"
-              element={
-                <>
-                  <GenreList genres={genres} />
-                  <GenrePage musicData={musicData} />
-                </>
-              }
-            />
-            <Route path="/about" element={<About />} />
-            <Route path="/license-terms" element={<LicenseTerms />} />
-            <Route path="/privacy" element={<PrivacyPolicy />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-        <Footer />
-        <CookieConsent />
-      </div>
-    </Router>
+    <HelmetProvider>
+      <Router>
+        <div className="flex flex-col min-h-screen bg-secondary">
+          <Header genres={genres} />
+          <main className="flex-grow container mx-auto px-4 py-8 mt-16">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    <h1 className="text-4xl font-bold mb-6 text-white">
+                      Welcome to BGM Library
+                    </h1>
+                    <GenreList genres={genres} />
+                    <Home musicData={musicData} genres={['All', ...genres]} />
+                  </>
+                }
+              />
+              <Route
+                path="/genre/:genre"
+                element={
+                  <>
+                    <GenreList genres={genres} />
+                    <GenrePage musicData={musicData} />
+                  </>
+                }
+              />
+              <Route path="/about" element={<About />} />
+              <Route path="/license-terms" element={<LicenseTerms />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+          <Footer />
+          <CookieConsent />
+        </div>
+      </Router>
+    </HelmetProvider>
   );
 }
 
